@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 exports.handler = async (event) => {
   const mongoUri =
-    "mongodb+srv://Capcons:b9v8FOHqUxjnnZiN@cluster0.ps2tt.mongodb.net/?retryWrites=true&w=majority";
+    "SERVERURI";
 
   let request = event["Records"][0]["body"];
 
