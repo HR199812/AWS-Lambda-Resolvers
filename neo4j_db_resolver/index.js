@@ -1,9 +1,9 @@
 (async () => {
   const neo4j = require("neo4j-driver");
 
-  const uri = "neo4j connection string";
-  const user = "USERID";
-  const password = "USERPASS";
+  const uri = "neo4j+s://a78a21f6.databases.neo4j.io";
+  const user = "reachout@capcons.com";
+  const password = "Capcons@2106";
 
   const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
   const session = driver.session();
