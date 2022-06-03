@@ -63,9 +63,9 @@ functions:
     handler: handler.getData
     vpc:
       securityGroupIds:
-        - sg-03fe6c434a9ed0c98
+        - securityGroupId
       subnetIds:
-        - subnet-0b73a44f2e6d8b7ef
+        - subnetId
     events:
       - http:
           path: movies/getAll
