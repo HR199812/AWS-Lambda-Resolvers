@@ -65,7 +65,7 @@ functions:
       securityGroupIds:
         - sg-03fe6c434a9ed0c98
       subnetIds:
-        - subnet-07811f1084ff7ae0b
+        - subnet-0b73a44f2e6d8b7ef
     events:
       - http:
           path: movies/getAll
