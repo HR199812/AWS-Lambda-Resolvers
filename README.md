@@ -13,7 +13,7 @@
 ### Using this approach is ok but it is not a secured way to do the approach.
 
 -----------------------------------------------------------------------------------------
-
+## Will only work in if you've atleast MongoAtlas M1 Cluster Plan.
 ### 2. Using MongoClient with VPC and Security Groups:-
 - Remember to configure aws in cli using
 ```
@@ -29,7 +29,7 @@ create serverless --template aws-nodejs
 3. Create a VPC in your selected region for which you've configured your AWS/Serverless in CLI.
 4. Create a private subnet for the newly created VPC.
 5. Create a security group for the same VPC.
-6. Make sure to keep the indetation of the serverless.yml file otherwise there will be a hell lot of errors that will pop-up. Also make sure to go to the next step only if indentation is correct otherwise you'll face an error like this:-
+6. Make sure to keep the indetation of the serverless.yml file otherwise there will be a hell lot of errors that will pop-up. Also make sure to go to the next step only if indentation is correct otherwise you'll face an errors.
 7. Create a cluster in MongoDb_Atlas and add sample data to it/or add database and collection to it.
 8. Now in the cluster go to NetworkAccess=>Peering=>add peering connection=>select aws=> enter the information asked such as Account12DigitNumber, VPC CIDR, VPC Region, etc.
 9. Go to AWS peering connection for your VPC and Accept the atlas connection request.
