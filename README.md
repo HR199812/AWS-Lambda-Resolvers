@@ -39,5 +39,6 @@ create serverless --template aws-nodejs
 ssl deploy --stage stage_name_you_want_to_give
 ```
 12. Get the URL from the terminal and hit it in the browser. You'll get data response from the Lambda function execution.
+<img width="790" alt="Screenshot 2022-06-03 at 7 07 13 PM" src="https://user-images.githubusercontent.com/39455725/171866847-0f4a4673-1f0c-4339-ad79-605aca6d05f8.png">
 13. Happy Coding!!
 ### Using this approach a secured way to do Create the resolver..
