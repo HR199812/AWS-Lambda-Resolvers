@@ -1,0 +1,14 @@
+{
+  "name": "mongo_db_vpc_peering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hritwik",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.6.0"
+  }
+}
