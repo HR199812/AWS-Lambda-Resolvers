@@ -1,38 +1,30 @@
-// Import the MongoDB driver
-const MongoClient = require("mongodb").MongoClient;
+'use strict';
+const mongo = require('mongodb');
+const { MongoClient } = mongo;
+let db = null;
 
-const MONGODB_URI =
-  "mongodb+srv://mongoresolver:mongoresolver@cluster0.ud4tf.mongodb.net/?retryWrites=true&w=majority";
-
-let cachedDb = null;
-
-async function connectToDatabase() {
-  if (cachedDb) {
-    return cachedDb;
+let connectToDatabase = (uri, dbName) => {
+  if (db && db.serverConfig.isConnected()) {
+    return Promise.resolve(db);
   }
+  return MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(client => {
+    db = client.db(dbName);
+    return db;
+  });
+};
 
-  // Connect to our MongoDB database hosted on MongoDB Atlas
-  const client = await MongoClient.connect(MONGODB_URI);
-
-  // Specify which database we want to use
-  const db = await client.db("sample_mflix");
-
-  cachedDb = db;
-  return db;
+let getAllMovies = async (db, table) => {
+  return await db.collection(table).find({}).limit(20).toArray();
 }
 
-exports.getData = async (event) => {
+exports.getData = async event => {
+  const dbConnection = await connectToDatabase("mongodb+srv://mongoresolver:mongoresolver@cluster0.ud4tf.mongodb.net/?retryWrites=true&w=majority", "sample_mflix");
+  const allMovies = await getAllMovies(dbConnection, "movies");
 
-  // Get an instance of our database
-  const db = await connectToDatabase();
-  let movies = await db.collection("movies").find({}).limit(20).toArray();;
+  console.log(allMovies);
 
-  console.log(movies);
-
-
-  const response = {
+  return {
     statusCode: 200,
-    body: JSON.stringify(movies),
+    body: JSON.stringify(allMovies),
   };
-  return response;
 };
