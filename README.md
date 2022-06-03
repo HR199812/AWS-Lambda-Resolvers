@@ -13,7 +13,7 @@
 ### Using this approach is ok but it is not a secured way to do the approach.
 
 -----------------------------------------------------------------------------------------
-## Will only work in if you've atleast MongoAtlas M1 Cluster Plan.
+## Will only work if you've atleast MongoAtlas M10 Cluster Plan.
 ### 2. Using MongoClient with VPC and Security Groups:-
 - Remember to configure aws in cli using
 ```
