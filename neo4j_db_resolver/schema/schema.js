@@ -2,7 +2,6 @@ const graphql = require("graphql");
 const Book = require("../models/book");
 const Author = require("../models/Author");
 const book = require("../models/book");
-// const _ = require('lodash');
 
 const {
   GraphQLObjectType,
@@ -84,20 +83,6 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    addAuthor: {
-      type: AuthorType,
-      args: {
-        name: { type: new GraphQLNonNull(GraphQLString) },
-        age: { type: new GraphQLNonNull(GraphQLInt) },
-      },
-      resolve(parent, args) {
-        let author = new Author({
-          name: args.name,
-          age: args.age,
-        });
-        return author.save();
-      },
-    },
     addBook: {
       type: BookType,
       args: {
@@ -122,14 +107,58 @@ const Mutation = new GraphQLObjectType({
         genre: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
-        console.log(args.id);
         book.findById(args.id).then((bookObj) => {
-          console.log(bookObj);
           bookObj.name = args.name;
           bookObj.genre = args.genre;
-
-          bookObj.save();
+          return bookObj.save();
         });
+      },
+    },
+    deleteBook: {
+      type: AuthorType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Book.deleteOne({ _id: args.id });
+      },
+    },
+    addAuthor: {
+      type: AuthorType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+      },
+      resolve(parent, args) {
+        let author = new Author({
+          name: args.name,
+          age: args.age,
+        });
+        return author.save();
+      },
+    },
+    updateAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+      },
+      resolve(parent, args) {
+        Author.findById(args.id).then((authorObj) => {
+          authorObj.name = args.name;
+          authorObj.age = args.age;
+          return authorObj.save();
+        });
+      },
+    },
+    deleteAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Author.deleteOne({ _id: args.id });
       },
     },
   },
