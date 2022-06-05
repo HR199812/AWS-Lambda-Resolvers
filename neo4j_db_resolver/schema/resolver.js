@@ -29,34 +29,28 @@ const resolvers = {
     },
   },
 
-  //   Mutation: {
-  //     createUser: (parent, args) => {
-  //       const user = args.input;
-  //       const lastId = UserList[UserList.length - 1].id;
-  //       user.id = lastId + 1;
-  //       UserList.push(user);
-  //       return user;
-  //     },
-
-  //     updateUsername: (parent, args) => {
-  //       const { id, newUsername } = args.input;
-  //       let userUpdated;
-  //       UserList.forEach((user) => {
-  //         if (user.id === Number(id)) {
-  //           user.username = newUsername;
-  //           userUpdated = user;
-  //         }
-  //       });
-
-  //       return userUpdated;
-  //     },
-
-  //     deleteUser: (parent, args) => {
-  //       const id = args.id;
-  //       _.remove(UserList, (user) => user.id === Number(id));
-  //       return null;
-  //     },
-  //   },
+  Mutation: {
+    createBook: async (parent, args) => {
+      let book = new Book({
+        name: args.input.name,
+        genre: args.input.genre,
+        authorId: args.input.authorId,
+      });
+      return await book.save();
+    },
+    createAuthor: async (parent, args) => {
+      let author = new Author({
+        name: args.input.name,
+        age: args.input.age,
+      });
+      return await author.save();
+    },
+    // deleteUser: (parent, args) => {
+    //   const id = args.id;
+    //   _.remove(UserList, (user) => user.id === Number(id));
+    //   return null;
+    // },
+  },
 };
 
 module.exports = { resolvers };
