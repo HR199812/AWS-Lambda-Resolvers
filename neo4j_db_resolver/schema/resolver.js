@@ -4,21 +4,28 @@ const Author = require("../models/Author");
 const resolvers = {
   Query: {
     // USER RESOLVERS
-    books: () => {
-      return Book.find({});
+    books: async () => {
+      return await Book.find({});
     },
-    book: (parent, args) => {
-      const book = Book.findById(args.id);
+    book: async (parent, args) => {
+      const book = await Book.findById(args.id);
       return book;
     },
 
     // MOVIE RESOLVERS
-    authors: () => {
-      return Author.find({});
+    authors: async () => {
+      return await Author.find({});
     },
-    author: (parent, args) => {
-      const author = Author.find(args.id);
+    author: async (parent, args) => {
+      console.log(args.id);
+      const author = await Author.find({ _id: args.id });
       return author;
+    },
+  },
+  Book: {
+    author: async (parent) => {
+      console.log(parent);
+      return await Author.findById(parent.authorId);
     },
   },
 
