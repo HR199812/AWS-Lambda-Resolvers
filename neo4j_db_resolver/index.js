@@ -9,7 +9,7 @@ const http = require("http");
 
 const app = express();
 const port = 3000;
-const MongoURI = `mongodb+srv://Capcons:b9v8FOHqUxjnnZiN@cluster0.ps2tt.mongodb.net/?retryWrites=true&w=majority`;
+const MongoURI = `mongo_uri`;
 
 // connect to mlab database
 // make sure to replace my db string & creds with your own
