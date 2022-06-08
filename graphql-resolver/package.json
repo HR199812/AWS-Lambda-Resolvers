@@ -1,5 +1,5 @@
 {
-  "name": "neo4j_db_resolver",
+  "name": "graphql_resolver",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
